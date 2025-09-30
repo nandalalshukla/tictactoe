@@ -21,7 +21,9 @@ export default function Board() {
   } else {
     status = "Turn : " + (isX ? "X" : "O");
   }
-
+  function playAgain() {
+    setSquares(Array(9).fill(null));
+  }
   function handleClick(index) {
     if (squares[index] || winner) {
       return;
@@ -37,7 +39,9 @@ export default function Board() {
   }
   return (
     <div className="flex flex-col">
-      <h1 className="text-center font-bold text-4xl text-white mb-3">{status}</h1>
+      <h1 className="text-center font-bold text-4xl text-white mb-3">
+        {status}
+      </h1>
       <div className="bg-gray-300 p-4 rounded-2xl grid grid-cols-3 grid-rows-3 gap-4">
         {squares.map((square, index) => (
           <Square
@@ -47,6 +51,12 @@ export default function Board() {
           />
         ))}
       </div>
+      <button
+        className="px-2 py-2 bg-blue-600 text-white font-semibold rounded-lg  text-2xl shadow-md hover:bg-blue-700 transition mt-4"
+        onClick={playAgain}
+      >
+        Play Again
+      </button>
     </div>
   );
 
